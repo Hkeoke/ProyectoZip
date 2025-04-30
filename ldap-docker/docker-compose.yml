@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  openldap:
+    build:
+      context: .
+      dockerfile: Dockerfile.openldap
+    container_name: openldap
+    environment:
+      LDAP_ORGANISATION: "Local"
+      LDAP_DOMAIN: "localhost"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "admin"
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ldap_data:/var/lib/openldap
+      - ldap_config:/etc/ldap/slapd.d
+    networks:
+      - ldap_network
+    restart: unless-stopped
+
+  phpldapadmin:
+    build:
+      context: .
+      dockerfile: Dockerfile.phpldapadmin
+    container_name: phpldapadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - openldap
+    networks:
+      - ldap_network
+    restart: unless-stopped
+
+networks:
+  ldap_network:
+    driver: bridge
+
+volumes:
+  ldap_data:
+  ldap_config:

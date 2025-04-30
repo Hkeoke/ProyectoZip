@@ -1,0 +1,12 @@
+dn: dc=localhost,dc=com
+objectClass: dcObject
+objectClass: organization
+dc: localhost
+o: Empresa Local
+
+dn: cn=admin,dc=localhost,dc=com
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: admin
+description: LDAP Administrator
+userPassword: admin 

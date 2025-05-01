@@ -1,0 +1,8 @@
+R -e "shiny::runApp('app.R')"
+
+
+shiny::runApp('app.R')
+
+
+library(shiny)
+runApp("app.R")

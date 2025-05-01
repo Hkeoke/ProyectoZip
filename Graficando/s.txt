@@ -1,0 +1,1 @@
+Vamos a intentar un enfoque diferente para crear la animación. En lugar de usar los frames de plotly, usaremos una actualización progresiva de los datos:
